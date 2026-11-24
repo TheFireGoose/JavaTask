@@ -1,0 +1,47 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Wartownik {
+
+    static void wypelnij(int[] tab, int n) {
+        Random r = new Random();
+        for (int i = 0; i < n; i++) {
+            tab[i] = r.nextInt(100) + 1;
+        }
+    }
+
+    static int szukaj(int[] tab, int n, int szukana) {
+        tab[n] = szukana;
+        int i = 0;
+        while (tab[i] != szukana) {
+            i++;
+        }
+        if (i < n) {
+            return i;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int n = 50;
+        int[] tab = new int[n + 1];
+        wypelnij(tab, n);
+
+        for (int i = 0; i < n; i++) {
+            System.out.print(tab[i]);
+            if (i < n - 1) System.out.print(", ");
+        }
+        System.out.println();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Podaj liczbe: ");
+        int szukana = sc.nextInt();
+
+        int wynik = szukaj(tab, n, szukana);
+        if (wynik == -1) {
+            System.out.println("Brak liczby w tablicy.");
+        } else {
+            System.out.println("Indeks: " + wynik);
+        }
+    }
+}
